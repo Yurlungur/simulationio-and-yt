@@ -1,4 +1,4 @@
-# simulationio-and-yt
+# Slides on SimulationIO and yt
 
 Author: Jonah Miller <jonah.maxwell.miller@gmail.com>
 
