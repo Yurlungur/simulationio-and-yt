@@ -1,6 +1,6 @@
 \documentclass[]{beamer}
 \mode<presentation>
-% Time-stamp: <2016-05-19 23:11:50 (jmiller)>
+% Time-stamp: <2016-05-20 16:02:23 (jmiller)>
 
 % beamer stuff
 % Gives us the bottom line with all the goodies
@@ -159,12 +159,14 @@ showstringspaces=false
 \begin{frame}
   \frametitle{What are they?}
   \begin{itemize}
-  \item {\color{blue}\href{https://github.com/eschnett/SimulationIO}{SimulationIO}} is a file format
+  \item {\color{blue}\href{https://github.com/eschnett/SimulationIO}{SimulationIO}} is a library
     \begin{itemize}
     \item Written by Erik Schnetter
     \item Open source
-    \item Self-describing
+    \item Meant to be a \textit{high-level} description of the output of
+      potentially many simulations
     \item Abstracts away simulation details
+    \item Describes an API API
     \item Uses category theory to cleanly remove ambiguities
     \end{itemize}
   \item {\color{blue}\href{http://yt-project.org/}{yt}} is a
@@ -237,10 +239,10 @@ showstringspaces=false
     \draw (5,2) node[mynode,text width=2.cm,align=center] (dfbc) {DFB Component};
     \draw[ultra thick,->] (dfbc) -- (dfb);
     \draw (9,8) node[mynode] (tangent) {Tangent Space};
-    \draw[ultra thick,<-] (field) -- (tangent);
+    \draw[ultra thick,->] (field) -- (tangent);
     \draw (9,6) node[mynode] (basis) {Basis};
     \draw[ultra thick,<-] (tangent) -- (basis);
-    \draw[ultra thick,<-] (discrete field) -- (basis);
+    \draw[ultra thick,->] (discrete field) -- (basis);
     \draw (9,2) node[mynode,text width=2.cm,align=center] (component) {Tensor Component};
     \draw[ultra thick,->] (component) -- (basis);
     \draw[ultra thick,->] (component) -- (dfbc);
@@ -251,19 +253,55 @@ showstringspaces=false
   \frametitle{AMR in SimulationIO}
   \begin{tikzpicture}
     \draw (0,5) node[mynode] (manifold) {Manifold};
-    \draw (4,8) node[mynode] (rdiscretization) {Discretization};
-    \draw (4,5) node[mynode] (discretization1) {Discretization};
-    \draw (4,2) node[mynode] (discretization2) {Discretization};
+    \draw (4,8) node[mynode] (rdiscretization) {Coarse Discretization};
+    \draw (4,5) node[mynode] (discretization1) {Finer Discretization};
+    \draw (4,2) node[mynode] (discretization2) {Finest Discretization};
     \draw (9,6.5) node[mynode] (subdiscretization1) {Subdiscretization};
     \draw (9,3.5) node[mynode] (subdiscretization2) {Subdiscretization};
-    \draw[ultra thick,<-] (manifold) -- (0,8) -- (rdiscretization);
-    \draw[ultra thick,<-] (manifold) -- (discretization1);
-    \draw[ultra thick,<-] (manifold) -- (0,2) -- (discretization2);
-    \draw[ultra thick,<-] (rdiscretization) -- (subdiscretization1);
-    \draw[ultra thick,<-] (subdiscretization1) -- (discretization1);
-    \draw[ultra thick,<-] (discretization1) -- (subdiscretization2);
-    \draw[ultra thick,<-] (subdiscretization2) -- (discretization2);
+    \draw[ultra thick,->] (manifold) -- (0,8) -- (rdiscretization);
+    \draw[ultra thick,->] (manifold) -- (discretization1);
+    \draw[ultra thick,->] (manifold) -- (0,2) -- (discretization2);
+    \draw[ultra thick,<->] (rdiscretization) -- (subdiscretization1);
+    \draw[ultra thick,<->] (subdiscretization1) -- (discretization1);
+    \draw[ultra thick,<->] (discretization1) -- (subdiscretization2);
+    \draw[ultra thick,<->] (subdiscretization2) -- (discretization2);
   \end{tikzpicture}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{SimulationIO Utilities}
+  \begin{itemize}
+  \item {\color{blue}\lstinline$sio-list$} is a utility for listing the contents of
+    a file
+\begin{lstlisting}[language=bash]
+  sio-list file.s5
+\end{lstlisting}
+  \item {\color{blue}\lstinline$sio-convert-carpet-output$} converts a
+    sequence of hdf5 files to an s5 file.
+\begin{lstlisting}[language=bash]
+  sio-convert-carpet-output out.s5 file_*.h5
+\end{lstlisting}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{SimulationIO Python API}
+  \begin{python}
+    import H5
+    import SimulationIO as SIO
+    import RegionCalculus as RC
+    f = H5.H5File(filename,H5.H5F_ACC_RDONLY)
+    project = SIO.readProject(f)
+    field = project.fields['rho']
+    dcf = field.discretefields['rho']
+    for dcfb in\
+    dcf.discretefieldblocks.itervalues():
+        for dcfbc in\
+        dcfb.discretefieldblockcomponents:
+            c = dcfbc.values()[0]
+            dset = c.getData_DataSet()
+            data = np.array(dset.read_double())
+  \end{python}
 \end{frame}
 
 \end{document}
