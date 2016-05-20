@@ -1,10 +1,10 @@
 \documentclass[]{beamer}
 \mode<presentation>
-% Time-stamp: <2016-05-19 00:10:06 (jmiller)>
+% Time-stamp: <2016-05-19 23:11:50 (jmiller)>
 
 % beamer stuff
 % Gives us the bottom line with all the goodies
-\usouetertheme{infolines}
+\useoutertheme{infolines}
 % Just the theme to use. Should be built into bemaer. Setting the
 % height gets rid of a whole lot of whitespace
 \usetheme[height=7mm]{Rochester}
@@ -93,6 +93,13 @@
   },
 }
 
+% some nice flowchart features
+\tikzset{
+    mynode/.style={rectangle,rounded corners,draw=black, top color=white, bottom color=yellow!50,very thick, inner sep=1em, minimum size=3em, text centered},
+    myarrow/.style={->, >=latex', shorten >=1pt, thick},
+    mylabel/.style={text width=7em, text centered} 
+}  
+
 % define a really nice visible "purple"
 \definecolor{gimppurple}{HTML}{AD26FB}
 % a light grey
@@ -173,7 +180,90 @@ showstringspaces=false
 
 \begin{frame}
   \frametitle{What do we care about in a simulation?}
-  
+  \begin{tikzpicture}
+    \draw[ultra thick,->] (7,3) -- (4,1.5);
+    \node[inner sep=0pt] at (2,2) {\includegraphics[width=4cm,trim={0cm 0cm 0cm 0cm},clip]{figures/surface-scatter-small}};
+    \node[inner sep=0pt] at (9,3.5) {\includegraphics[width=8cm,trim={0cm 0cm 0cm 0cm},clip]{figures/surface-scatter}};
+    \draw[ultra thick,->] (5,7) -- (7,4);
+    \node[inner sep=0pt] at (4,6) {\includegraphics[width=8cm,trim={0.5cm 0cm 0cm 1.75cm},clip]{figures/surface-smooth}};
+  \end{tikzpicture}
+\end{frame}
+
+\begin{frame}
+  \frametitle{What do we care about in a simulation?}
+  \begin{center}
+    \includegraphics[width=12cm]{figures/wavey}
+  \end{center}
+\end{frame}
+
+\begin{frame}
+  \frametitle{What do we care about in a simulation?}
+    \begin{center}
+    \includegraphics[width=6cm]{figures/fourpatches.png}
+    \includegraphics[width=6cm]{figures/sixpatches.png}
+  \end{center}
+  Schnetter \textit{et al} 2006 Class. \textit{Quantum Grav.} \textbf{23} S553\\
+  Pollney \textit{et al} 2011 \textit{Phys. Rev. D} \textbf{83} 044045
+\end{frame}
+
+\begin{frame}
+  \frametitle{Other efforts}
+  \begin{itemize}
+  \item {\color{blue}\href{http://vish.fiberbundle.net/documentation/the-fiber-bundle-data-model/}{Fiber Bundle}} by Werner Benger
+  \item {\color{blue}\href{https://bitbucket.org/DrWhat/pycactuset}{PostCactus}} by Wolfgang Kausten
+  \item {\color{blue}\href{http://simulationtools.org/}{Simulation Tools}} by Ian Hinder and Barry Wardell
+  \item {\color{blue}\href{https://bitbucket.org/dradice/scidata}{scidata}} by David Radice
+  \item {\color{blue}\href{https://bitbucket.org/fguercilena/rugutils}{rugutils}} by Federico Guercilena
+  \item {\color{blue}\href{https://bitbucket.org/knarrff/pycactus}{pycactus}} by Roberto De Pietri, Francesco Maione, and Frank L\"{o}ffler
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Projects as Directed Graphs}
+  \begin{tikzpicture}
+    \draw (1,8) node[mynode] (manifold) {Manifold};
+    \draw (1,6) node[mynode] (discretization) {Discretization};
+    \draw[ultra thick,<-] (manifold) -- (discretization);
+    \draw (1,4) node[mynode,text width=2.5cm,align=center] (discb) {Discretization Block};
+    \draw[ultra thick,<-] (discretization) -- (discb);
+    \draw (5,8) node[mynode] (field) {Field};
+    \draw[ultra thick,<-] (manifold) -- (field);
+    \draw (5,6) node[mynode,text width=1.5cm,align=center] (discrete field) {Discrete Field};
+    \draw[ultra thick,<-] (field) -- (discrete field);
+    \draw[ultra thick,->] (discrete field) -- (discretization);
+    \draw (5,4) node[mynode,text width=2.5cm,align=center] (dfb) {Discretization Field Block};
+    \draw[ultra thick,->] (dfb) -- (discrete field);
+    \draw[ultra thick,->] (dfb) -- (discb);
+    \draw (5,2) node[mynode,text width=2.cm,align=center] (dfbc) {DFB Component};
+    \draw[ultra thick,->] (dfbc) -- (dfb);
+    \draw (9,8) node[mynode] (tangent) {Tangent Space};
+    \draw[ultra thick,<-] (field) -- (tangent);
+    \draw (9,6) node[mynode] (basis) {Basis};
+    \draw[ultra thick,<-] (tangent) -- (basis);
+    \draw[ultra thick,<-] (discrete field) -- (basis);
+    \draw (9,2) node[mynode,text width=2.cm,align=center] (component) {Tensor Component};
+    \draw[ultra thick,->] (component) -- (basis);
+    \draw[ultra thick,->] (component) -- (dfbc);
+  \end{tikzpicture}
+\end{frame}
+
+\begin{frame}
+  \frametitle{AMR in SimulationIO}
+  \begin{tikzpicture}
+    \draw (0,5) node[mynode] (manifold) {Manifold};
+    \draw (4,8) node[mynode] (rdiscretization) {Discretization};
+    \draw (4,5) node[mynode] (discretization1) {Discretization};
+    \draw (4,2) node[mynode] (discretization2) {Discretization};
+    \draw (9,6.5) node[mynode] (subdiscretization1) {Subdiscretization};
+    \draw (9,3.5) node[mynode] (subdiscretization2) {Subdiscretization};
+    \draw[ultra thick,<-] (manifold) -- (0,8) -- (rdiscretization);
+    \draw[ultra thick,<-] (manifold) -- (discretization1);
+    \draw[ultra thick,<-] (manifold) -- (0,2) -- (discretization2);
+    \draw[ultra thick,<-] (rdiscretization) -- (subdiscretization1);
+    \draw[ultra thick,<-] (subdiscretization1) -- (discretization1);
+    \draw[ultra thick,<-] (discretization1) -- (subdiscretization2);
+    \draw[ultra thick,<-] (subdiscretization2) -- (discretization2);
+  \end{tikzpicture}
 \end{frame}
 
 \end{document}
