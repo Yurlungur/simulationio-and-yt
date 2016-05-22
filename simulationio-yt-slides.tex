@@ -1,6 +1,6 @@
 \documentclass[]{beamer}
 \mode<presentation>
-% Time-stamp: <2016-05-22 14:23:24 (jmiller)>
+% Time-stamp: <2016-05-22 14:50:11 (jmiller)>
 
 % beamer stuff
 % Gives us the bottom line with all the goodies
@@ -356,9 +356,20 @@ showstringspaces=false
   
 \end{frame}
 
-\begin{frame}
+\begin{frame}[fragile]
   \frametitle{Anatomy of yt.load}
-  
+  \begin{tikzpicture}
+    \draw (6,6) node[inner sep=0pt] {
+      \begin{python}
+        ds = yt.load('myfile.s5',
+        configuration='iteration.0000000000-timelevel.0',
+        domain_left_edge=[-1048,-1048,-24],
+        domain_dds=[8,8,8])
+      \end{python}
+    }; \draw[color=blue,ultra thick,<-] (6,7) 
+    -- (6,7.5) node[above]
+    {input file};
+  \end{tikzpicture}
 \end{frame}
 
 \begin{frame}
@@ -415,7 +426,7 @@ yt.ProjectionPlot(...)
 \end{python}
     \column{5cm}
     \begin{center}
-      \includegraphics[width=6cm]{figures/isolated_galaxy_thermal_energy_density.pdf}
+      \includegraphics[width=5cm]{figures/isolated_galaxy_thermal_energy_density.pdf}
     \end{center}
     \begin{flushright}
       {\footnotesize\url{http://yt-project.org/data/}}
@@ -472,6 +483,41 @@ yt.ProjectionPlot(...)
         \end{itemize}
       \end{itemize}
     \end{large}
+  \end{columns}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Visualization Tasks}
+  \begin{columns}
+    \column{5cm}
+    \begin{itemize}
+    \item Gravitational waves from a BBH in-spiral
+      \begin{itemize}
+      \item Visualize the $\psi_4$ at a fixed time and look for the
+        quadrupole moment of the waves in 3D.
+      \item Visualize the total radiated power at a fixed time.
+      \item Plot lapse of the black holes at a fixed time.
+      \item Plot the instantaneous motion of the black holes by
+        overlaying the shift vector
+      \end{itemize}
+    \end{itemize}
+    \column{7cm}
+    \begin{itemize}
+    \item A single neutron star
+      \begin{itemize}
+      \item Experiment with volume plotting the full data
+      \item Experiment with the vertex-centred symmetric data. What
+        goes wrong when you use cell-centring? What about volume
+        rendering? Plot the grid structure.
+      \end{itemize}
+    \item A binary neutron stars
+      \begin{itemize}
+      \item Plot the grid structure of the neutron stars at a fixed
+        time
+      \item Experiment with projections vs. slicing vs. volume
+        plotting. What goes wrong when you make a volume plot?
+      \end{itemize}
+    \end{itemize}
   \end{columns}
 \end{frame}
 
