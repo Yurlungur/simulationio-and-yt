@@ -1,6 +1,6 @@
 \documentclass[]{beamer}
 \mode<presentation>
-% Time-stamp: <2016-05-20 16:02:23 (jmiller)>
+% Time-stamp: <2016-05-22 13:32:52 (jmiller)>
 
 % beamer stuff
 % Gives us the bottom line with all the goodies
@@ -144,6 +144,18 @@ showstringspaces=false
    \setcounter{framenumber}{\value{finalframe}}
 }
 
+% a macro for a useful transition slide
+\newcommand{\transitionslide}[1]{
+  \begin{frame}[plain]
+  \vfill
+  \centering
+  \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{title}
+    \usebeamerfont{title}{#1}
+  \end{beamercolorbox}
+  \vfill
+\end{frame}
+}
+
 \title[SIO \& yt]{SimulationIO and yt}
 \author[J. Miller]{Jonah M. Miller}
 \institute[PI]{\color{blue}Perimeter Institute for Theoretical Physics}
@@ -210,14 +222,21 @@ showstringspaces=false
 
 \begin{frame}
   \frametitle{Other efforts}
+  \begin{columns}
+    \column{6cm}
   \begin{itemize}
   \item {\color{blue}\href{http://vish.fiberbundle.net/documentation/the-fiber-bundle-data-model/}{Fiber Bundle}} by Werner Benger
-  \item {\color{blue}\href{https://bitbucket.org/DrWhat/pycactuset}{PostCactus}} by Wolfgang Kausten
+  \item {\color{blue}\href{https://bitbucket.org/DrWhat/pycactuset}{PostCactus}} by Wolfgang Kastaun
   \item {\color{blue}\href{http://simulationtools.org/}{Simulation Tools}} by Ian Hinder and Barry Wardell
   \item {\color{blue}\href{https://bitbucket.org/dradice/scidata}{scidata}} by David Radice
   \item {\color{blue}\href{https://bitbucket.org/fguercilena/rugutils}{rugutils}} by Federico Guercilena
   \item {\color{blue}\href{https://bitbucket.org/knarrff/pycactus}{pycactus}} by Roberto De Pietri, Francesco Maione, and Frank L\"{o}ffler
   \end{itemize}
+  \column{6cm}
+  \begin{center}
+    \includegraphics[width=6cm]{figures/simulation_tools_example.png}
+  \end{center}
+  \end{columns}
 \end{frame}
 
 \begin{frame}
@@ -303,5 +322,7 @@ showstringspaces=false
             data = np.array(dset.read_double())
   \end{python}
 \end{frame}
+
+\transitionslide{\Huge yt}
 
 \end{document}
