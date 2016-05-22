@@ -1,6 +1,6 @@
 \documentclass[]{beamer}
 \mode<presentation>
-% Time-stamp: <2016-05-22 13:32:52 (jmiller)>
+% Time-stamp: <2016-05-22 14:23:24 (jmiller)>
 
 % beamer stuff
 % Gives us the bottom line with all the goodies
@@ -111,13 +111,13 @@
 
 % fonts
 % Default fixed font does not support bold face
-\DeclareFixedFont{\ttb}{T1}{txtt}{bx}{n}{12} % for bold
-\DeclareFixedFont{\ttm}{T1}{txtt}{m}{n}{12}  % for normal
+\DeclareFixedFont{\ttb}{T1}{txtt}{bx}{n}{10} % for bold
+\DeclareFixedFont{\ttm}{T1}{txtt}{m}{n}{10}  % for normal
 
 % Python style for highlighting
 \newcommand\pythonstyle{\lstset{
 language=Python,
-basicstyle=\ttm,
+basicstyle=\footnotesize\ttm,
 otherkeywords={self},
 keywordstyle=\ttb\color{deepblue},
 emph={__init__},           
@@ -324,5 +324,155 @@ showstringspaces=false
 \end{frame}
 
 \transitionslide{\Huge yt}
+
+\begin{frame}
+  \frametitle{volume rendering}
+  \begin{center}
+    \animategraphics[height=8cm,every=1,autoplay,loop]{6}{figures/psi4r-it-1024/psi4r-iteration-1024-volume-f-}{00}{32}
+  \end{center}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Projections and Slices}
+  \begin{columns}
+    \column{4cm}
+    \begin{center}
+      
+    \end{center}
+    \column{4cm}
+    \begin{center}
+      
+    \end{center}
+    \column{4cm}
+    \begin{center}
+      
+    \end{center}    
+  \end{columns}
+  Simulation due to David Radice
+\end{frame}
+
+\begin{frame}
+  \frametitle{Loading SimulationIO Data}
+  
+\end{frame}
+
+\begin{frame}
+  \frametitle{Anatomy of yt.load}
+  
+\end{frame}
+
+\begin{frame}
+  \frametitle{Parallelism is Easy}
+  
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Data Analysis}
+  \begin{columns}
+    \column{5cm}
+\begin{python}
+import yt
+source = "./galaxy0030"
+d = "density"
+t = "temperature"
+vm = "velocty_magnitude"
+ds = yt.load(source)
+ad = ds.all_data()
+yt.PhasePlot(ad,d,t,vm)
+\end{python}
+    \column{7cm}
+    \begin{center}
+      \includegraphics[width=7cm]{figures/isolated_galaxy_phase_diagram.pdf}
+    \end{center}
+  \end{columns}
+  \begin{flushright}
+    {\footnotesize\url{http://yt-project.org/data/}}
+  \end{flushright}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{With Python, yt is Easily Extendable}
+  \begin{columns}
+    \column{7cm}
+\begin{python}
+# function defining 
+# new quantity
+fname = "thermal_energy_density"
+def therm_en_dens(field,data):
+    n = data['gas', 
+             'number_density']
+    kT = data['gas', 'kT']
+    return (3/2)*n*kT
+
+# add it to the dataset
+ds.add_field(("gas",fname), 
+             units="erg/cm**3", 
+        function=therm_en_dens)
+
+# plot
+ad = ds.all_data()
+yt.ProjectionPlot(...)
+\end{python}
+    \column{5cm}
+    \begin{center}
+      \includegraphics[width=6cm]{figures/isolated_galaxy_thermal_energy_density.pdf}
+    \end{center}
+    \begin{flushright}
+      {\footnotesize\url{http://yt-project.org/data/}}
+    \end{flushright}
+  \end{columns}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Extensions are Encouraged!}
+  \begin{columns}
+    \column{6cm}
+    \begin{center}
+      \includegraphics[width=6cm]{figures/yt-pull-requests.png}
+    \end{center}
+    \column{6cm}
+    \begin{center}
+      \includegraphics[width=6cm]{figures/yt-development-docs.png}
+    \end{center}
+  \end{columns}
+\end{frame}
+
+\begin{frame}
+  \frametitle{SimulationIO/yt Advantages and Disadvantages}
+  \begin{columns}
+    \column{6cm}
+    \underline{\color{green}\huge Advantages}
+    \begin{large}
+      \begin{itemize}
+      \item SimulationIO abstracts away simulation details and deals with physics ideas like manifolds and submanifolds
+      \item Both frameworks have a Python API:
+        \begin{itemize}
+        \item Scripting interface
+        \item Easily extendable
+        \end{itemize}
+      \item yt is community developed
+        \begin{itemize}
+        \item Inclusive and Accessible
+        \end{itemize}
+      \item yt parallelizes reliably and seems to scale well
+      \end{itemize}
+    \end{large}
+    \column{6cm}
+    \underline{\color{red}\huge Disadvantages}
+    \begin{large}
+      \begin{itemize}
+      \item No GUI to speak of
+      \item Cactus does not (yet) output SIO files. Must convert.
+      \item SimulationIO and corresponding reader very much in beta
+      \item Missing features:
+        \begin{itemize}
+        \item Multiblock
+        \item Correct Units (coming soon!)
+        \item Reliable vertex centering
+        \end{itemize}
+      \end{itemize}
+    \end{large}
+  \end{columns}
+\end{frame}
 
 \end{document}
