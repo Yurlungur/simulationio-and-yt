@@ -1,6 +1,6 @@
 \documentclass[]{beamer}
 \mode<presentation>
-% Time-stamp: <2016-05-22 14:50:11 (jmiller)>
+% Time-stamp: <2016-05-22 22:11:05 (jmiller)>
 
 % beamer stuff
 % Gives us the bottom line with all the goodies
@@ -337,23 +337,44 @@ showstringspaces=false
   \begin{columns}
     \column{4cm}
     \begin{center}
-      
+      \includegraphics[width=4cm]{figures/bns-it-0000016384-slice.png}
     \end{center}
     \column{4cm}
     \begin{center}
-      
+      \includegraphics[width=4cm]{figures/bns-it-0000163840-projection.png}
     \end{center}
     \column{4cm}
     \begin{center}
-      
+      \includegraphics[width=4cm]{figures/bns-it-0000294912-projection.png}
     \end{center}    
   \end{columns}
   Simulation due to David Radice
 \end{frame}
 
-\begin{frame}
+\begin{frame}[fragile]
   \frametitle{Loading SimulationIO Data}
-  
+  \begin{columns}
+    \column{6cm}
+    \begin{python}
+ds = yt.load(fpath,
+   centering='vertex',
+   Configuration=conf_name)
+p = yt.ProjectionPlot(ds,
+   'z','ADMBASE::alp',
+   center=center,
+   width=width)
+p.set_log('ADMBASE::alp',
+          False)
+p.set_map(field='all',
+          cmap='jet')
+p.annotate_grids()
+p.show()
+    \end{python}
+    \column{6cm}
+    \begin{center}
+      \includegraphics[width=6cm]{figures/static-tov-projection.png}
+    \end{center}
+  \end{columns}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -361,20 +382,44 @@ showstringspaces=false
   \begin{tikzpicture}
     \draw (6,6) node[inner sep=0pt] {
       \begin{python}
-        ds = yt.load('myfile.s5',
-        configuration='iteration.0000000000-timelevel.0',
-        domain_left_edge=[-1048,-1048,-24],
-        domain_dds=[8,8,8])
+ds = yt.load('myfile.s5',
+     configuration='iteration.0000000000-timelevel.0',
+     domain_left_edge=[-1048,-1048,-24],
+     domain_dds=[8,8,8])
       \end{python}
-    }; \draw[color=blue,ultra thick,<-] (6,7) 
-    -- (6,7.5) node[above]
-    {input file};
+    }; 
+    \draw[color=red,ultra thick,<-] (4.,7) 
+    -- (4.,7.5) node[above] {\color{red} input file};
+    \draw[color=blue,ultra thick,<-] (8,6.5) 
+    -- (8,9) node[above] {configuration is combo of iteration, timelevel};
+    \draw[color=red,ultra thick,<-] (3,5.25)
+    -- (3,4.75) node[below] {\color{red} can set $[dx, dy, dz]$};
+    \draw[color=blue,ultra thick,<-] (6,5.75)
+    -- (6,3.5) node[below] {can set $[x_0 - n_g dx, y_0 - n_g dy, z_0 - n_g dz]$};
+    \draw[color=gimppurple,ultra thick,<-] (0.75,7) -- (0.75, 8.5) 
+    -- (1.,8.5) node[right] {\color{gimppurple}dataset};
   \end{tikzpicture}
 \end{frame}
 
-\begin{frame}
+\begin{frame}[fragile]
   \frametitle{Parallelism is Easy}
-  
+  \begin{tikzpicture}
+    \draw (6,5) node[inner sep=0pt] {
+  \begin{python}
+import yt
+yt.enable_parallelism()
+ds = yt.load(fpath,configuration=conf_name)
+prj = yt.OffAxisProjectionPlot(ds, orthog_vec, 
+                               center, width=width)
+if yt.is_root():
+    prj.save(plot_name)
+  \end{python}
+};
+\draw[ultra thick,color=red,<-] (3.5,6.1) 
+-- (3.5,7) node[above] {\color{red}often all you need!};
+\draw[ultra thick,color=red,<-] (4.4,4.35) -- (6,4.35)
+-- (6,3.) node[below] {\color{red} selects root process};
+\end{tikzpicture}
 \end{frame}
 
 \begin{frame}[fragile]
