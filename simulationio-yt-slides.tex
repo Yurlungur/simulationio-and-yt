@@ -1,6 +1,6 @@
 \documentclass[]{beamer}
 \mode<presentation>
-% Time-stamp: <2016-05-22 22:11:05 (jmiller)>
+% Time-stamp: <2016-06-05 17:43:33 (jmiller)>
 
 % beamer stuff
 % Gives us the bottom line with all the goodies
@@ -306,11 +306,8 @@ showstringspaces=false
 \begin{frame}[fragile]
   \frametitle{SimulationIO Python API}
   \begin{python}
-    import H5
-    import SimulationIO as SIO
-    import RegionCalculus as RC
-    f = H5.H5File(filename,H5.H5F_ACC_RDONLY)
-    project = SIO.readProject(f)
+    import pysimulationio
+    project,file_handle = SIO.readProject(filename)
     field = project.fields['rho']
     dcf = field.discretefields['rho']
     for dcfb in\
@@ -320,6 +317,7 @@ showstringspaces=false
             c = dcfbc.values()[0]
             dset = c.getData_DataSet()
             data = np.array(dset.read_double())
+    file_handle.close()
   \end{python}
 \end{frame}
 
