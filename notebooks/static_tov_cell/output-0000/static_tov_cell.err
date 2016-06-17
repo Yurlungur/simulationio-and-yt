@@ -1,0 +1,67 @@
++ set -e
++ cd /xfs1/jmiller/simulations/static_tov_cell/output-0000-active
++ echo Checking:
++ pwd
++ hostname
++ date
++ echo Environment:
++ export GMON_OUT_PREFIX=gmon.out
++ GMON_OUT_PREFIX=gmon.out
++ export OMP_NUM_THREADS=4
++ OMP_NUM_THREADS=4
++ sort
++ env
++ echo Starting:
+++ date +%s
++ export CACTUS_STARTTIME=1463093113
++ CACTUS_STARTTIME=1463093113
++ mpirun -np 2 /xfs1/jmiller/simulations/static_tov_cell/SIMFACTORY/exe/cactus_sim -L 3 /xfs1/jmiller/simulations/static_tov_cell/output-0000/static_tov_cell_centred.par
+--------------------------------------------------------------------------
+[[2839,1],1]: A high-performance Open MPI point-to-point messaging module
+was unable to find any relevant network interfaces:
+
+Module: OpenFabrics (openib)
+  Host: scecontrol
+
+Another transport will be used instead, although this may result in
+lower performance.
+--------------------------------------------------------------------------
+WARNING[L1,P0] (CarpetIOHDF5): I/O Method 'IOHDF5_0D' registered: 0D AMR output of grid variables to HDF5 files
+WARNING[L1,P1] (CarpetIOHDF5): I/O Method 'IOHDF5_0D' registered: 0D AMR output of grid variables to HDF5 files
+WARNING[L1,P1] (CarpetIOHDF5): I/O Method 'IOHDF5_1D' registered: 1D AMR output of grid variables to HDF5 files
+WARNING[L1,P0] (CarpetIOHDF5): I/O Method 'IOHDF5_1D' registered: 1D AMR output of grid variables to HDF5 files
+WARNING[L1,P1] (CarpetIOHDF5): I/O Method 'IOHDF5_2D' registered: 2D AMR output of grid variables to HDF5 files
+WARNING[L1,P1] (CarpetIOHDF5): I/O Method 'IOHDF5_3D' registered: 3D AMR output of grid variables to HDF5 files
+WARNING[L1,P0] (CarpetIOHDF5): I/O Method 'IOHDF5_2D' registered: 2D AMR output of grid variables to HDF5 files
+WARNING[L1,P0] (CarpetIOHDF5): I/O Method 'IOHDF5_3D' registered: 3D AMR output of grid variables to HDF5 files
+WARNING[L1,P1] (ML_BSSN_Helper): Forcing ML_BSSN::initial_boundary_condition="extrapolate-gammas" because ML_BSSN::my_initial_boundary_condition="extrapolate-gammas"
+WARNING[L1,P1] (ML_BSSN_Helper): Forcing ML_BSSN::rhs_boundary_condition="NewRad" because ML_BSSN::my_rhs_boundary_condition="NewRad"
+WARNING[L1,P1] (ML_BSSN_Helper): Forcing ML_BSSN::evolveA=1 because ML_BSSN::LapseACoeff=1.0
+WARNING[L1,P1] (ML_BSSN_Helper): Forcing ML_BSSN::evolveB=1 because ML_BSSN::ShiftBCoeff=1.0
+WARNING[L1,P1] (ML_BSSN_Helper): Forcing ML_BSSN::evolveB=0 because ML_BSSN::shiftGammaCoeff=0.0
+WARNING[L1,P1] (ML_BSSN_Helper): Forcing ML_BSSN::advectLapse=0 because ML_BSSN::LapseAdvectionCoeff=0.0
+WARNING[L1,P1] (ML_BSSN_Helper): Forcing ML_BSSN::advectShift=0 because ML_BSSN::ShiftAdvectionCoeff=0.0
+WARNING[L1,P1] (ML_BSSN_Helper): Parameter ML_BSSN::my_initial_boundary_condition is outdated; please update the parameter file. Do not use this parameter, and set up initial boundary conditions as usual.
+WARNING[L1,P1] (ML_BSSN_Helper): Parameter ML_BSSN::my_rhs_boundary_condition is outdated; please update the parameter file. Do not use this parameter, and set up RHS boundary conditions as usual.
+WARNING[L1,P1] (ML_BSSN_Helper): Parameter ML_BSSN::LapseACoeff is outdated; please update the parameter file. Instead of using this parameter, you should set ML_BSSN::evolveA.
+WARNING[L1,P1] (ML_BSSN_Helper): Parameter ML_BSSN::ShiftBCoeff is outdated; please update the parameter file. Instead of using this parameter, you should set ML_BSSN::evolveB.
+WARNING[L1,P1] (ML_BSSN_Helper): Parameter ML_BSSN::LapseAdvectionCoeff is outdated; please update the parameter file. Instead of using this parameter, you should set ML_BSSN::advectLapse.
+WARNING[L1,P1] (ML_BSSN_Helper): Parameter ML_BSSN::ShiftAdvectionCoeff is outdated; please update the parameter file. Instead of using this parameter, you should set ML_BSSN::advectShift.
+WARNING[L1,P0] (ML_BSSN_Helper): Forcing ML_BSSN::initial_boundary_condition="extrapolate-gammas" because ML_BSSN::my_initial_boundary_condition="extrapolate-gammas"
+WARNING[L1,P0] (ML_BSSN_Helper): Forcing ML_BSSN::rhs_boundary_condition="NewRad" because ML_BSSN::my_rhs_boundary_condition="NewRad"
+WARNING[L1,P0] (ML_BSSN_Helper): Forcing ML_BSSN::evolveA=1 because ML_BSSN::LapseACoeff=1.0
+WARNING[L1,P0] (ML_BSSN_Helper): Forcing ML_BSSN::evolveB=1 because ML_BSSN::ShiftBCoeff=1.0
+WARNING[L1,P0] (ML_BSSN_Helper): Forcing ML_BSSN::evolveB=0 because ML_BSSN::shiftGammaCoeff=0.0
+WARNING[L1,P0] (ML_BSSN_Helper): Forcing ML_BSSN::advectLapse=0 because ML_BSSN::LapseAdvectionCoeff=0.0
+WARNING[L1,P0] (ML_BSSN_Helper): Forcing ML_BSSN::advectShift=0 because ML_BSSN::ShiftAdvectionCoeff=0.0
+WARNING[L1,P0] (ML_BSSN_Helper): Parameter ML_BSSN::my_initial_boundary_condition is outdated; please update the parameter file. Do not use this parameter, and set up initial boundary conditions as usual.
+WARNING[L1,P0] (ML_BSSN_Helper): Parameter ML_BSSN::my_rhs_boundary_condition is outdated; please update the parameter file. Do not use this parameter, and set up RHS boundary conditions as usual.
+WARNING[L1,P0] (ML_BSSN_Helper): Parameter ML_BSSN::LapseACoeff is outdated; please update the parameter file. Instead of using this parameter, you should set ML_BSSN::evolveA.
+WARNING[L1,P0] (ML_BSSN_Helper): Parameter ML_BSSN::ShiftBCoeff is outdated; please update the parameter file. Instead of using this parameter, you should set ML_BSSN::evolveB.
+WARNING[L1,P0] (ML_BSSN_Helper): Parameter ML_BSSN::LapseAdvectionCoeff is outdated; please update the parameter file. Instead of using this parameter, you should set ML_BSSN::advectLapse.
+WARNING[L1,P0] (ML_BSSN_Helper): Parameter ML_BSSN::ShiftAdvectionCoeff is outdated; please update the parameter file. Instead of using this parameter, you should set ML_BSSN::advectShift.
+[scecontrol:14992] 1 more process has sent help message help-mpi-btl-base.txt / btl:no-nics
+[scecontrol:14992] Set MCA parameter "orte_base_help_aggregate" to 0 to see all help / error messages
++ echo Stopping:
++ date
++ echo Done.

@@ -1,0 +1,9 @@
+#! /bin/bash
+cd /xfs1/jmiller/compute/Cactus
+CHAINED_JOB_ID=''
+if [ "${CHAINED_JOB_ID}" != '' ]; then
+    while ps "${CHAINED_JOB_ID}" >/dev/null; do
+        sleep 60
+    done
+fi
+exec /xfs1/jmiller/compute/Cactus/repos/simfactory2/bin/sim run static_tov_cell --machine=scecontrol --restart-id=0  < /dev/null > /xfs1/jmiller/simulations/static_tov_cell/output-0000/static_tov_cell.out 2> /xfs1/jmiller/simulations/static_tov_cell/output-0000/static_tov_cell.err

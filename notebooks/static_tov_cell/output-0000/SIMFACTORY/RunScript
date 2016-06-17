@@ -1,0 +1,26 @@
+#! /bin/bash
+
+echo "Preparing:"
+set -x                          # Output commands
+set -e                          # Abort on errors
+
+cd /xfs1/jmiller/simulations/static_tov_cell/output-0000-active
+
+echo "Checking:"
+pwd
+hostname
+date
+
+echo "Environment:"
+export GMON_OUT_PREFIX=gmon.out
+export OMP_NUM_THREADS=4
+env | sort > SIMFACTORY/ENVIRONMENT
+
+echo "Starting:"
+export CACTUS_STARTTIME=$(date +%s)
+mpirun -np 2 /xfs1/jmiller/simulations/static_tov_cell/SIMFACTORY/exe/cactus_sim -L 3 /xfs1/jmiller/simulations/static_tov_cell/output-0000/static_tov_cell_centred.par
+
+echo "Stopping:"
+date
+
+echo "Done."

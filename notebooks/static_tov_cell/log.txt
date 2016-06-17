@@ -1,0 +1,72 @@
+[LOG:2016-05-12 18:45:09] self.create(simulationName, parfile)::Creating simulation static_tov_cell
+[LOG:2016-05-12 18:45:09] self.create(simulationName, parfile)::Simulation directory: /xfs1/jmiller/simulations/static_tov_cell
+[LOG:2016-05-12 18:45:12] self.create(simulationName, parfile)::Simulation Properties:
+[LOG:2016-05-12 18:45:12] self.create(simulationName, parfile)::
+[LOG:2016-05-12 18:45:12] self.create(simulationName, parfile)::[properties]
+[LOG:2016-05-12 18:45:12] self.create(simulationName, parfile)::machine         = scecontrol
+[LOG:2016-05-12 18:45:12] self.create(simulationName, parfile)::simulationid    = simulation-static_tov_cell-scecontrol-scecontrol.pi.local-jmiller-2016.05.12-18.45.09-14886
+[LOG:2016-05-12 18:45:12] self.create(simulationName, parfile)::sourcedir       = /xfs1/jmiller/compute/Cactus
+[LOG:2016-05-12 18:45:12] self.create(simulationName, parfile)::configuration   = sim
+[LOG:2016-05-12 18:45:12] self.create(simulationName, parfile)::configid        = config-sim-scecontrol-xfs1-jmiller-compute-Cactus
+[LOG:2016-05-12 18:45:12] self.create(simulationName, parfile)::buildid         = build-sim-scecontrol-jmiller-2016.05.12-22.20.50-18183
+[LOG:2016-05-12 18:45:12] self.create(simulationName, parfile)::testsuite       = False
+[LOG:2016-05-12 18:45:12] self.create(simulationName, parfile)::executable      = /xfs1/jmiller/simulations/static_tov_cell/SIMFACTORY/exe/cactus_sim
+[LOG:2016-05-12 18:45:12] self.create(simulationName, parfile)::optionlist      = /xfs1/jmiller/simulations/static_tov_cell/SIMFACTORY/cfg/OptionList
+[LOG:2016-05-12 18:45:12] self.create(simulationName, parfile)::submitscript    = /xfs1/jmiller/simulations/static_tov_cell/SIMFACTORY/run/SubmitScript
+[LOG:2016-05-12 18:45:12] self.create(simulationName, parfile)::runscript       = /xfs1/jmiller/simulations/static_tov_cell/SIMFACTORY/run/RunScript
+[LOG:2016-05-12 18:45:12] self.create(simulationName, parfile)::parfile         = /xfs1/jmiller/simulations/static_tov_cell/SIMFACTORY/par/static_tov_cell_centred.par
+[LOG:2016-05-12 18:45:12] self.create(simulationName, parfile)::
+[LOG:2016-05-12 18:45:12] self.create(simulationName, parfile)::Simulation static_tov_cell created
+[LOG:2016-05-12 18:45:12] self.submit(submitScript)::Restart for simulation static_tov_cell created with restart id 0, long restart id 0000
+[LOG:2016-05-12 18:45:12] self.submit(submitScript)::Prepping for submission
+[LOG:2016-05-12 18:45:12] self.submit(submitScript)::No previous walltime available to be used, using walltime 8:00:00
+[LOG:2016-05-12 18:45:12] self.submit(submitScript)::Defined substituion properties for submission
+[LOG:2016-05-12 18:45:12] self.submit(submitScript)::{'SIMULATION_ID': 'simulation-static_tov_cell-scecontrol-scecontrol.pi.local-jmiller-2016.05.12-18.45.09-14886', 'NODE_PROCS': 2, 'PPN_USED': 8, 'PPN': 8, 'ALLOCATION': '', 'WALLTIME_HH': '08', 'CPUFREQ': '2.4', 'USER': 'jmiller', 'RUNDIR': '/xfs1/jmiller/simulations/static_tov_cell/output-0000', 'NODES': 1, 'SIMULATION_NAME': 'static_tov_cell', 'WALLTIME': '8:00:00', 'NUM_THREADS': 4, 'EXECUTABLE': '/xfs1/jmiller/simulations/static_tov_cell/SIMFACTORY/exe/cactus_sim', 'PROCS_REQUESTED': 8, 'EMAIL': 'jmiller@perimeterinstitute.ca', 'RESTART_ID': 0, 'CHAINED_JOB_ID': '', 'FROM_RESTART_COMMAND': '', 'NUM_SMT': 1, 'WALLTIME_SECONDS': 28800, 'SIMFACTORY': '/xfs1/jmiller/compute/Cactus/repos/simfactory2/bin/sim', 'PROCS': 8, 'SUBMITSCRIPT': '/xfs1/jmiller/simulations/static_tov_cell/output-0000/SIMFACTORY/SubmitScript', 'WALLTIME_HOURS': 8.0, 'WALLTIME_MM': '00', 'PARFILE': '/xfs1/jmiller/simulations/static_tov_cell/output-0000/static_tov_cell_centred.par', 'WALLTIME_SS': '00', 'QUEUE': 'NOQUEUE', 'CONFIGURATION': 'sim', 'SOURCEDIR': '/xfs1/jmiller/compute/Cactus', 'HOSTNAME': 'scecontrol.pi.local', 'NUM_PROCS': 2, 'SCRIPTFILE': '/xfs1/jmiller/simulations/static_tov_cell/output-0000/SIMFACTORY/SubmitScript', 'MEMORY': '40960', 'WALLTIME_MINUTES': 480, 'SHORT_SIMULATION_NAME': 'static_tov_cell'}
+[LOG:2016-05-12 18:45:12] self.submit(submitScript)::self.Properties: /xfs1/jmiller/simulations/static_tov_cell/output-0000/SIMFACTORY/properties.ini
+[LOG:2016-05-12 18:45:12] self.submit(submitScript)::
+[LOG:2016-05-12 18:45:12] self.submit(submitScript)::[properties]
+[LOG:2016-05-12 18:45:12] self.submit(submitScript)::machine         = scecontrol
+[LOG:2016-05-12 18:45:12] self.submit(submitScript)::simulationid    = simulation-static_tov_cell-scecontrol-scecontrol.pi.local-jmiller-2016.05.12-18.45.09-14886
+[LOG:2016-05-12 18:45:12] self.submit(submitScript)::sourcedir       = /xfs1/jmiller/compute/Cactus
+[LOG:2016-05-12 18:45:12] self.submit(submitScript)::configuration   = sim
+[LOG:2016-05-12 18:45:12] self.submit(submitScript)::configid        = config-sim-scecontrol-xfs1-jmiller-compute-Cactus
+[LOG:2016-05-12 18:45:12] self.submit(submitScript)::buildid         = build-sim-scecontrol-jmiller-2016.05.12-22.20.50-18183
+[LOG:2016-05-12 18:45:12] self.submit(submitScript)::testsuite       = False
+[LOG:2016-05-12 18:45:12] self.submit(submitScript)::executable      = /xfs1/jmiller/simulations/static_tov_cell/SIMFACTORY/exe/cactus_sim
+[LOG:2016-05-12 18:45:12] self.submit(submitScript)::optionlist      = /xfs1/jmiller/simulations/static_tov_cell/SIMFACTORY/cfg/OptionList
+[LOG:2016-05-12 18:45:12] self.submit(submitScript)::submitscript    = /xfs1/jmiller/simulations/static_tov_cell/SIMFACTORY/run/SubmitScript
+[LOG:2016-05-12 18:45:12] self.submit(submitScript)::runscript       = /xfs1/jmiller/simulations/static_tov_cell/SIMFACTORY/run/RunScript
+[LOG:2016-05-12 18:45:12] self.submit(submitScript)::parfile         = /xfs1/jmiller/simulations/static_tov_cell/SIMFACTORY/par/static_tov_cell_centred.par
+[LOG:2016-05-12 18:45:12] self.submit(submitScript)::chainedjobid    = -1
+[LOG:2016-05-12 18:45:12] self.submit(submitScript)::ppn             = 8
+[LOG:2016-05-12 18:45:12] self.submit(submitScript)::procsrequested  = 8
+[LOG:2016-05-12 18:45:12] self.submit(submitScript)::allocation      = 
+[LOG:2016-05-12 18:45:12] self.submit(submitScript)::user            = jmiller
+[LOG:2016-05-12 18:45:12] self.submit(submitScript)::numsmt          = 1
+[LOG:2016-05-12 18:45:12] self.submit(submitScript)::walltime        = 8:00:00
+[LOG:2016-05-12 18:45:12] self.submit(submitScript)::numprocs        = 2
+[LOG:2016-05-12 18:45:12] self.submit(submitScript)::nodeprocs       = 2
+[LOG:2016-05-12 18:45:12] self.submit(submitScript)::numthreads      = 4
+[LOG:2016-05-12 18:45:12] self.submit(submitScript)::hostname        = scecontrol.pi.local
+[LOG:2016-05-12 18:45:12] self.submit(submitScript)::ppnused         = 8
+[LOG:2016-05-12 18:45:12] self.submit(submitScript)::queue           = NOQUEUE
+[LOG:2016-05-12 18:45:12] self.submit(submitScript)::cpufreq         = 2.4
+[LOG:2016-05-12 18:45:12] self.submit(submitScript)::procs           = 8
+[LOG:2016-05-12 18:45:12] self.submit(submitScript)::memory          = 40960
+[LOG:2016-05-12 18:45:12] self.submit(submitScript)::nodes           = 1
+[LOG:2016-05-12 18:45:12] self.submit(submitScript)::pbsSimulationName= static_tov_cell
+[LOG:2016-05-12 18:45:12] self.submit(submitScript)::
+[LOG:2016-05-12 18:45:12] self.submit(submitScript)::saving substituted submitscript contents to: /xfs1/jmiller/simulations/static_tov_cell/output-0000/SIMFACTORY/SubmitScript
+[LOG:2016-05-12 18:45:12] self.submit(submitScript)::Executing submission command: exec /xfs1/jmiller/simulations/static_tov_cell/output-0000/SIMFACTORY/SubmitScript < /dev/null > /dev/null 2> /dev/null & echo $!
+[LOG:2016-05-12 18:45:12] self.makeActive()::Simulation static_tov_cell with restart-id 0 has been made active
+[LOG:2016-05-12 18:45:12] job_id = self.extractJobId(output)::received raw output: 14939
+[LOG:2016-05-12 18:45:12] job_id = self.extractJobId(output)::
+[LOG:2016-05-12 18:45:12] job_id = self.extractJobId(output)::using submitRegex: (.*)
+[LOG:2016-05-12 18:45:12] self.submit(submitScript)::After searching raw output, it was determined that the job_id is: 14939
+[LOG:2016-05-12 18:45:12] self.submit(submitScript)::Simulation static_tov_cell, with restart id 0, and job id 14939 has been submitted
+[LOG:2016-05-12 18:45:12] self.load(simulationName, restartId)::For simulation static_tov_cell, loaded restart id 0, long restart id 0000
+[LOG:2016-05-12 18:45:12] self.run()::Prepping for execution/run
+[LOG:2016-05-12 18:45:12] checkpointing = self.PrepareCheckpointing(recover_id)::PrepareCheckpointing: max_restart_id: -1
+[LOG:2016-05-12 18:45:12] self.run()::Defined substitution properties for execution/run
+[LOG:2016-05-12 18:45:12] self.run()::{'SIMULATION_ID': 'simulation-static_tov_cell-scecontrol-scecontrol.pi.local-jmiller-2016.05.12-18.45.09-14886', 'NODE_PROCS': '2', 'PPN_USED': '8', 'PPN': '8', 'WALLTIME_HH': '08', 'CPUFREQ': '2.4', 'USER': 'jmiller', 'RUNDIR': '/xfs1/jmiller/simulations/static_tov_cell/output-0000', 'NODES': '1', 'SIMULATION_NAME': 'static_tov_cell', 'WALLTIME': '8:00:00', 'NUM_THREADS': '4', 'EXECUTABLE': '/xfs1/jmiller/simulations/static_tov_cell/SIMFACTORY/exe/cactus_sim', 'PROCS_REQUESTED': '8', 'RESTART_ID': 0, 'NUM_SMT': '1', 'WALLTIME_SECONDS': 28800, 'CONFIGURATION': 'sim', 'PROCS': '8', 'SUBMITSCRIPT': '/xfs1/jmiller/simulations/static_tov_cell/SIMFACTORY/run/SubmitScript', 'WALLTIME_MM': '00', 'MACHINE': 'scecontrol', 'PARFILE': '/xfs1/jmiller/simulations/static_tov_cell/output-0000/static_tov_cell_centred.par', 'WALLTIME_SS': '00', 'WALLTIME_HOURS': 8.0, 'SOURCEDIR': '/xfs1/jmiller/compute/Cactus', 'HOSTNAME': 'scecontrol.pi.local', 'RUNDEBUG': 0, 'NUM_PROCS': '2', 'SCRIPTFILE': '/xfs1/jmiller/simulations/static_tov_cell/SIMFACTORY/run/SubmitScript', 'MEMORY': '40960', 'WALLTIME_MINUTES': 480, 'SHORT_SIMULATION_NAME': 'static_tov_cell'}
+[LOG:2016-05-12 18:45:12] self.run()::Executing run command: /xfs1/jmiller/simulations/static_tov_cell/output-0000/SIMFACTORY/RunScript
